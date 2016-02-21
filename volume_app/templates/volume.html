@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div id="volume-slider">
+        <input class="bar" type="range" id="rangeinput" value="{{ volume }}"/>
+    </div>
+    <script>
+        var slider = $("#volume-slider");
+        slider.on("input change", function (e) {
+            $.post('{% url 'volume' %}', {volume: e.target.value}, function(value){
+              slider.val(volume);
+            });
+        });
+    </script>
+{% endblock %}
